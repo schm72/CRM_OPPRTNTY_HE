@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns:ca="sap.ca.ui" xmlns:core="sap.ui.core" xmlns:crm="sap.cus.crm.lib.reuse.controls"
+	xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:ui="sap.ui.layout" xmlns="sap.m">
+	<!-- This extension point can be used to add fields to content -->
+	<ui:form.SimpleForm xmlns:ui="sap.ui.layout" id="bottom_he_enhance_view">
+		<ui:content>
+			<Label xmlns="sap.m" id="idZzfcDiscount_v_label" text="Forecast Discount"></Label>
+			<Text xmlns="sap.m" id="idZzfcDiscount_v" text="{path:'json>/ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.infotexttonumber'}"/>
+				
+			<Label xmlns="sap.m" id="idZzfcSellThr_v_label" text="Forecast Sell Through"></Label>
+			<Text xmlns="sap.m" id="idZzfcSellThr_v" text="{path:'json>/ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+		</ui:content>
+	</ui:form.SimpleForm>
+</core:FragmentDefinition>

@@ -1,0 +1,91 @@
+{
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "buildRequired": true,
+    "lastBuildDateTime": "Thu, 31 Mar 2016 12:08:08 GMT"
+  },
+  "generation": [
+    {
+      "templateId": "fioriexttemplate.extensionProject",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Wed, 09 Mar 2016 15:49:11 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendviewcomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Fri, 11 Mar 2016 13:52:54 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendcontrollerhook",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 31 Mar 2016 11:59:30 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "mockpreview": {
+    "mockUri": "",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "extensibility": {
+    "controllers": {
+      "Main": "CRM_OPPRTNTY%2fMain.controller.js",
+      "S2": "CRM_OPPRTNTY%2fview%2fS2.controller.js",
+      "S3": "CRM_OPPRTNTY%2fview%2fS3.controller.js",
+      "S4": "CRM_OPPRTNTY%2fview%2fS4.controller.js",
+      "S5": "CRM_OPPRTNTY%2fview%2fS5.controller.js"
+    },
+    "views": {
+      "Main": "CRM_OPPRTNTY%2fMain.view.xml",
+      "S2": "CRM_OPPRTNTY%2fview%2fS2.view.xml",
+      "S3": "CRM_OPPRTNTY%2fview%2fS3.view.xml",
+      "S4": "CRM_OPPRTNTY%2fview%2fS4.view.xml",
+      "S5": "CRM_OPPRTNTY%2fview%2fS5.view.xml"
+    },
+    "fragments": {
+      "AccountSelectDialog": "CRM_OPPRTNTY%2fview%2fAccountSelectDialog.fragment.xml",
+      "ChangeLog": "CRM_OPPRTNTY%2fview%2fChangeLog.fragment.xml",
+      "ContactF4": "CRM_OPPRTNTY%2fview%2fContactF4.fragment.xml",
+      "CurrencySelectDialog": "CRM_OPPRTNTY%2fview%2fCurrencySelectDialog.fragment.xml",
+      "EditLayout": "CRM_OPPRTNTY%2fview%2fEditLayout.fragment.xml",
+      "EmployeeF4": "CRM_OPPRTNTY%2fview%2fEmployeeF4.fragment.xml",
+      "ParticipantsF4": "CRM_OPPRTNTY%2fview%2fParticipantsF4.fragment.xml",
+      "ParticipantsF4Multiselect": "CRM_OPPRTNTY%2fview%2fParticipantsF4Multiselect.fragment.xml",
+      "ProcessTypeDialog": "CRM_OPPRTNTY%2fview%2fProcessTypeDialog.fragment.xml",
+      "ProductBasketDialog": "CRM_OPPRTNTY%2fview%2fProductBasketDialog.fragment.xml",
+      "SalesAreaDialog": "CRM_OPPRTNTY%2fview%2fSalesAreaDialog.fragment.xml",
+      "ShowErrorMsg": "CRM_OPPRTNTY%2fview%2fShowErrorMsg.fragment.xml",
+      "SortingDialog": "CRM_OPPRTNTY%2fview%2fSortingDialog.fragment.xml",
+      "showMaxHit": "CRM_OPPRTNTY%2fview%2fshowMaxHit.fragment.xml"
+    },
+    "type": "abaprep",
+    "component": "CRM_OPPRTNTY%2fComponent.js",
+    "configuration": "CRM_OPPRTNTY%2fConfiguration.js",
+    "system": {
+      "name": "sprgts",
+      "proxyUrlPrefix": "/destinations/sprgts",
+      "sapClient": "777"
+    },
+    "BSPName": "CRM_OPPRTNTY",
+    "namespace": "cus.crm.opportunity",
+    "resourceBundle": "i18n/i18n.properties",
+    "parentResourceRootUrl": "/destinations/sprgts/sap/bc/ui5_ui5/sap/CRM_OPPRTNTY"
+  },
+  "deploy": {
+    "destination": "sprgts",
+    "name": "zcrm_opprtntyhe"
+  }
+}
