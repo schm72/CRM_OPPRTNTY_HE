@@ -10,7 +10,6 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		// first additional value forecast discount - ZzfcSellThr
 		var extensionSellThroughValue = this.byId("idZzfcSellThr_e").getValue();
 		oEntry.ZzfcSellThr = extensionSellThroughValue;  
-	
 		return true;
 	},
 	extHookBindAdditionalFields: function(a) {
