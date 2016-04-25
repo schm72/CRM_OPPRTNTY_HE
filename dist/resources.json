@@ -1,0 +1,53 @@
+{
+    "resources": [
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "localService/Product.json"
+        },
+        {
+            "name": "localService/PurchaseOrder.json"
+        },
+        {
+            "name": "localService/PurchaseOrderItem.json"
+        },
+        {
+            "name": "localService/Supplier.json"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "visual_ext_index.html"
+        },
+        {
+            "name": "preview_hidden.html"
+        },
+        {
+            "name": "view/S3_opportunityInfoTabContentBottomExtensionCustom.fragment.xml"
+        },
+        {
+            "name": "view/S4Custom.controller.js"
+        },
+        {
+            "name": "view/S5_salesAreaCreateContentTopExtensionCustom.fragment.xml"
+        },
+        {
+            "name": "view/S4_opportunityEditContentBottomExtensionCustom.fragment.xml"
+        },
+        {
+            "name": "view/S5Custom.controller.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "neo-app.json"
+        }
+    ]
+}
