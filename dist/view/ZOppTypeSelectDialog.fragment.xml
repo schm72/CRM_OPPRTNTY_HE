@@ -1,0 +1,12 @@
+<SelectDialog
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+      
+        title="{i18n>OPPTYPE_TITLE}"
+        noDataText="{i18n>NO_OPPTYPE_TEXT}"
+        multiSelect=""
+        confirm="setOppType"
+        search="searchOppType"
+        >
+    
+</SelectDialog>

@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <ColumnListItem>
+    	<cells>
+    		<Link text="{Id}"/>
+    		<Text text="{Description}"/>
+    		<Text text="{MainCompetitor}"/>
+    		<Text text="{ExpSalesVol}"/>
+    		<Text text="{Currency}"/>
+    	</cells>
+    </ColumnListItem>
+</core:FragmentDefinition>

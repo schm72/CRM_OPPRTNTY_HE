@@ -3,11 +3,24 @@
 	<!-- This extension point can be used to add fields to content -->
 	<ui:form.SimpleForm xmlns:ui="sap.ui.layout" id="bottom_he_enhance_view">
 		<ui:content>
-			<Label xmlns="sap.m" id="idZzfcDiscount_v_label" text="Forecast Discount"></Label>
-			<Text xmlns="sap.m" id="idZzfcDiscount_v" text="{path:'json>/ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.infotexttonumber'}"/>
+			<Label xmlns="sap.m" id="idZzfcDiscount_v_label" text="{i18n>ZZFCDISCOUNT}"></Label>
+			<Text  xmlns="sap.m" id="idZzfcDiscount_v" text="{path:'json>/ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.infotexttonumber'}"/>
 				
-			<Label xmlns="sap.m" id="idZzfcSellThr_v_label" text="Forecast Sell Through"></Label>
-			<Text xmlns="sap.m" id="idZzfcSellThr_v" text="{path:'json>/ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+			<Label xmlns="sap.m" id="idZzfcSellThr_v_label" text="{i18n>ZZFCSELLTHR}"></Label>
+			<Text  xmlns="sap.m" id="idZzfcSellThr_v" text="{path:'json>/ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+				
+			<Label xmlns="sap.m" id="idZzfcOppEnroll_v_label" text="{i18n>ZZFCOPPENROLL}"></Label>
+			<Text  xmlns="sap.m" id="idZzfcOppEnroll_v" text="{path:'json>/ZzfcOppEnroll' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+			
+			<Label xmlns="sap.m" id="idzzModuleId_v_label" text="{i18n>ZZMODULEID}"></Label>
+			<Text  xmlns="sap.m" id="idzzModuleId_v" text="{json>/zzModuleId}"/>
+            
+			<Label xmlns="sap.m" id="idZzDepartment_v_label" text="{i18n>ZZDEPARTMENT}"></Label>
+			<Text  xmlns="sap.m" id="idZzDepartment_v" text="{json>/ZzDepartment}"/>
+            
+			<Label xmlns="sap.m" id="idzzOppType_v_label" text="{i18n>ZZOPPTYPE}"></Label>
+			<Text  xmlns="sap.m" id="idzzOppType_v" text="{json>/zzOppType}"/>
+            
 		</ui:content>
 	</ui:form.SimpleForm>
 </core:FragmentDefinition>

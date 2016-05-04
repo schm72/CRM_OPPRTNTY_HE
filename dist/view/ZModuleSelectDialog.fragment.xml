@@ -1,0 +1,12 @@
+<SelectDialog
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+      
+        title="{i18n>ZMODULE_TITLE}"
+        noDataText="{i18n>NO_ZMODULE_TEXT}"
+        multiSelect=""
+        confirm="setzzModuleId"
+        search="searchzzModuleId"
+        >
+         
+</SelectDialog>

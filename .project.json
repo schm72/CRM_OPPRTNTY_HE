@@ -6,8 +6,8 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true,
-    "lastBuildDateTime": "Thu, 31 Mar 2016 12:08:08 GMT"
+    "buildRequired": false,
+    "lastBuildDateTime": "Wed, 04 May 2016 12:35:50 GMT"
   },
   "generation": [
     {
@@ -18,12 +18,22 @@
     {
       "templateId": "fioriexttemplate.extendviewcomponent",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Fri, 11 Mar 2016 13:52:54 GMT"
+      "dateTimeStamp": "Thu, 28 Apr 2016 15:14:52 GMT"
     },
     {
       "templateId": "fioriexttemplate.extendcontrollerhook",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Thu, 31 Mar 2016 11:59:30 GMT"
+      "dateTimeStamp": "Tue, 03 May 2016 15:52:01 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.hidecontrolcomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Thu, 28 Apr 2016 13:52:00 GMT"
+    },
+    {
+      "templateId": "fioriexttemplate.extendcontrollercomponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Mon, 02 May 2016 14:49:28 GMT"
     }
   ],
   "translation": {
@@ -86,6 +96,6 @@
   },
   "deploy": {
     "destination": "sprgts",
-    "name": "zcrm_opprtntyhe"
+    "name": "ZCRM_OPPRTNTYHE"
   }
 }

@@ -1,0 +1,12 @@
+<SelectDialog
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+      
+        title="{i18n>DEPARTMENT_TITLE}"
+        noDataText="{i18n>NO_DEPARTMENT_TEXT}"
+        multiSelect=""
+        confirm="setDepartment"
+        search="searchDepartment"
+        >
+    
+</SelectDialog>

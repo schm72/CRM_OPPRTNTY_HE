@@ -1,46 +1,75 @@
 {
     "resources": [
         {
-            "name": "Component.js"
-        },
-        {
-            "name": "index.html"
-        },
-        {
-            "name": "localService/Product.json"
-        },
-        {
-            "name": "localService/PurchaseOrder.json"
-        },
-        {
             "name": "localService/PurchaseOrderItem.json"
         },
         {
             "name": "localService/Supplier.json"
         },
         {
+            "name": "localService/Product.json"
+        },
+        {
             "name": "localService/metadata.xml"
         },
         {
-            "name": "visual_ext_index.html"
+            "name": "localService/PurchaseOrder.json"
         },
         {
-            "name": "preview_hidden.html"
-        },
-        {
-            "name": "view/S3_opportunityInfoTabContentBottomExtensionCustom.fragment.xml"
-        },
-        {
-            "name": "view/S4Custom.controller.js"
-        },
-        {
-            "name": "view/S5_salesAreaCreateContentTopExtensionCustom.fragment.xml"
+            "name": "view/S3_opportunityTabBarItemLastExtensionCustom.fragment.xml"
         },
         {
             "name": "view/S4_opportunityEditContentBottomExtensionCustom.fragment.xml"
         },
         {
+            "name": "view/S4Custom.controller.js"
+        },
+        {
+            "name": "view/S3_opportunityInfoTabContentBottomExtensionCustom.fragment.xml"
+        },
+        {
             "name": "view/S5Custom.controller.js"
+        },
+        {
+            "name": "view/S5_salesAreaCreateContentTopExtensionCustom.fragment.xml"
+        },
+        {
+            "name": "view/ZOppTypeSelectDialog.fragment.xml"
+        },
+        {
+            "name": "view/ZModuleSelectDialog.fragment.xml"
+        },
+        {
+            "name": "view/ZDepartmentSelectDialog.fragment.xml"
+        },
+        {
+            "name": "view/S3Custom.controller.js"
+        },
+        {
+            "name": "view/S3_oppTabCustCompProdItems.fragment.xml"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "visual_ext_index.html"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "preview_hidden.html"
+        },
+        {
+            "name": "i18n/i18n_custom_en.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_custom_de.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "util/Formatter.js"
         },
         {
             "name": "Component-preload.js",

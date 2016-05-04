@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:ui="sap.ui.layout" xmlns:layout="sap.ui.layout" xmlns:ca="sap.ca.ui" xmlns="sap.m"
+	xmlns:form="sap.ui.layout.form" xmlns:crm="sap.cus.crm.lib.reuse.controls">
+	<!-- This extension point can be used to add fields to items -->
+	<IconTabFilter 
+	    xmlns="sap.m" 
+	    id="tab_CompProducts" 
+	    icon="sap-icon://compare-2" 
+	    text="{i18n>COMP_PRODUCTS}" 
+	    key="CompetitorProducts" 
+	    iconColor="Neutral" 
+	    count="">
+		<content>
+			<Table id="CompProducts_Tab" inset="false" growing="false">
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>COMP_ID}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>COMP_DESC}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>COMP_MAIN}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>COMP_EXSV}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text text="{i18n>COMP_CURR}"/>
+					</Column>
+				</columns>
+				<items>
+				    <!-- fragment:  -->    
+				</items>
+			</Table>
+		</content>
+	</IconTabFilter>
+</core:FragmentDefinition>

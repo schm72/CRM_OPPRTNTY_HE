@@ -4,11 +4,30 @@
 	<!-- This extension point can be used to add fields to content -->
 	<la:form.SimpleForm xmlns:la="sap.ui.layout" id="bottom_he_enhance_edit" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" class="editableForm" visible="{path : 'versioning&gt;/BackendSchemaVersion',formatter : 'cus.crm.opportunity.util.Formatter.formatEmployeeRespField'}">
 		<la:content>
-			<Label xmlns="sap.m" id="idZzfcDiscount_e_label" text="Forecast Discount (%)" ></Label>
-			<Input xmlns="sap.m" id="idZzfcDiscount_e" value="{path:'ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
+			<Label xmlns="sap.m" id="idZzfcDiscount_e_label" text="{i18n>ZZFCDISCOUNT}" ></Label>
+			<Input xmlns="sap.m" id="idZzfcDiscount_e"  value="{path:'ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
 			
-			<Label xmlns="sap.m" id="idZzfcSellThr_e_label" text="Forecast Sell Through" ></Label>
-			<Input xmlns="sap.m" id="idZzfcSellThr_e" value="{path:'ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
+			<Label xmlns="sap.m" id="idZzfcSellThr_e_label" text="{i18n>ZZFCSELLTHR}" ></Label>
+			<Input xmlns="sap.m" id="idZzfcSellThr_e"   value="{path:'ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
+            
+			<Label xmlns="sap.m" id="idZzfcOppEnroll_e_label" text="{i18n>ZZFCOPPENROLL}"></Label>
+			<Input xmlns="sap.m" id="idZzfcOppEnroll_e" value="{path:'ZzfcOppEnroll' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+			
+			<Label xmlns="sap.m" id="idzzModuleId_e_label" text="{i18n>ZZMODULEID}"></Label>
+			<Input xmlns="sap.m" id="idzzModuleId_e"    value="{zzModuleId}"
+						valueHelpRequest="showzzModuleIdF4" valueHelpOnly="false"
+						showValueHelp="true"/>
+            
+			<Label xmlns="sap.m" id="idZzDepartment_e_label" text="{i18n>ZZDEPARTMENT}"></Label>
+			<Input xmlns="sap.m" id="idZzDepartment_e"  value="{ZzDepartment}"
+						valueHelpRequest="showDepartmentF4" valueHelpOnly="false"
+						showValueHelp="true"/>
+            
+			<Label xmlns="sap.m" id="idzzOppType_e_label" text="{i18n>ZZOPPTYPE}"></Label>
+			<Input xmlns="sap.m" id="idzzOppType_e"     value="{zzOppType}"
+						valueHelpRequest="showOppTypeF4" valueHelpOnly="false"
+						showValueHelp="true"/>
+            
 		</la:content>
 	</la:form.SimpleForm>
 </core:FragmentDefinition>
