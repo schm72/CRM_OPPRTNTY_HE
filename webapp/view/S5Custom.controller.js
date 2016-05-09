@@ -55,6 +55,16 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
 		var oExtensionzzOppType = this.byId("idzzOppType");
 		var valuezzOppType = oExtensionzzOppType.getValue();
 		oEntry.zzOppType = valuezzOppType;
+        if( oEntry.ZzDepartment !== "" ) {
+    		var vDepartment = {
+    			HeaderGuid: oEntry.Guid,
+    			PartnerFunctionCode: "00000033",
+    			PartnerNumber: oEntry.ZzDepartment,
+    			PartnerName: "Is Department",
+    			PartnerFunctionText: "Is Department"
+    		};
+    		oEntry.SalesTeam.push(vDepartment);
+        }
 	},
 	extHookCustomLogicForAttachRouteMatch: function(e) {
 		this.getView().addEventDelegate({
