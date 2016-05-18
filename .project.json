@@ -7,7 +7,7 @@
     "targetFolder": "dist",
     "sourceFolder": "webapp",
     "buildRequired": true,
-    "lastBuildDateTime": "Mon, 09 May 2016 17:19:02 GMT"
+    "lastBuildDateTime": "Wed, 18 May 2016 11:15:28 GMT"
   },
   "generation": [
     {
@@ -23,7 +23,7 @@
     {
       "templateId": "fioriexttemplate.extendcontrollerhook",
       "templateVersion": "1.4.0",
-      "dateTimeStamp": "Mon, 09 May 2016 15:21:01 GMT"
+      "dateTimeStamp": "Tue, 17 May 2016 17:16:54 GMT"
     },
     {
       "templateId": "fioriexttemplate.hidecontrolcomponent",

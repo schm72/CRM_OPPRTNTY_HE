@@ -30,7 +30,41 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
 		});
 		this.OppTypeF4Template.data("NAME", "{" + cus.crm.opportunity.util.schema.getFilterString(this.oModel) + "}");
 		this.OppTypeF4Template.data("ID", "{Type}");
+		// do something after the items loaded
+        var that = this;
+        this.oModel.attachRequestCompleted(function(){
+			that._onAfterRequestComp();
+        });
 	},
+    _onAfterRequestComp: function() {
+        this.convertCustOppType();
+	},
+	convertCustOppType: function(vInputType) {
+	    var vOppTypeID;
+	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
+	        vOppTypeID = vInputType;
+	    } else {
+	        vOppTypeID = this.byId('idzzOppType').mProperties.text;
+	    }
+	    if(vOppTypeID !== "" && this.isCustNumeric(vOppTypeID)) {
+		    var sPathOppType = "/ZOpportunityTypeHESet('" + vOppTypeID + "')";
+		    var that = this;
+		    this.oModel.read(sPathOppType, null, null, true, function(oData) {
+    			if (oData && typeof oData !== "undefined" && oData.Description !== "") {
+    				that.byId('idzzOppType').setValue(oData.Description);
+    				that.activeCustOppTypeID = oData.Type;
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathOppType + " Error: " + oError);
+    		});
+        }
+	},
+	isCustNumeric: function( obj ) {
+	    if ( typeof obj === "undefined") {
+	        return false;
+	    }
+        return !jQuery.isArray( obj ) && (obj - parseFloat( obj ) + 1) >= 0;
+    },
 	extHookSaveOentry: function(oEntry) {
 		var oExtensionZzfcDiscount = this.byId("idZzfcDiscount");
 		var valueZzfcDiscount = oExtensionZzfcDiscount.getValue();
@@ -54,7 +88,11 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
 		
 		var oExtensionzzOppType = this.byId("idzzOppType");
 		var valuezzOppType = oExtensionzzOppType.getValue();
-		oEntry.zzOppType = valuezzOppType;
+		if (typeof this.activeCustOppTypeID !== "undefined" && this.activeCustOppTypeID !== "") {
+		    oEntry.zzOppType = this.activeCustOppTypeID;
+		} else if (this.isCustNumeric(valuezzOppType)) {
+		    oEntry.zzOppType = valuezzOppType;
+		}
         if( oEntry.ZzDepartment !== "" ) {
     		var vDepartment = {
     			HeaderGuid: oEntry.Guid,
@@ -80,7 +118,12 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
 		this.byId("idzzModuleId").setValue("");
 		this.byId("idZzDepartment").setValue("");
 		// default -> 11
-		this.byId('idzzOppType').setValue("11");
+		var vDefaultValue = "11";
+		this.byId('idzzOppType').setValue(vDefaultValue);
+		if (this.isCustNumeric(vDefaultValue)) {
+		    this.activeCustOppTypeID = vDefaultValue;
+		}
+        this.convertCustOppType(vDefaultValue);
 	},
 
 /* Department F4 Dialog methods */
@@ -261,6 +304,7 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
 		var params = e.getParameter("selectedItem");
 		var idOppType = params.data('ID');
 		this.byId('idzzOppType').setValue(idOppType);
+        this.convertCustOppType(idOppType);
 	},
 	searchOppType: function(e) {
 		var f = [];

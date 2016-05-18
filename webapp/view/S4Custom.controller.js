@@ -30,7 +30,41 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		});
 		this.OppTypeF4Template.data("NAME", "{" + cus.crm.opportunity.util.schema.getFilterString(this.oModel) + "}");
 		this.OppTypeF4Template.data("ID", "{Type}");
+		// do something after the items loaded
+        var that = this;
+        this.oModel.attachRequestCompleted(function(){
+			that._onAfterRequestComp();
+        });
 	},
+    _onAfterRequestComp: function() {
+        this.convertCustOppType();
+	},
+	convertCustOppType: function(vInputType) {
+	    var vOppTypeID;
+	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
+	        vOppTypeID = vInputType;
+	    } else {
+	        vOppTypeID = this.byId('idzzOppType_e').mProperties.text;
+	    }
+	    if(vOppTypeID !== "" && this.isCustNumeric(vOppTypeID)) {
+		    var sPathOppType = "/ZOpportunityTypeHESet('" + vOppTypeID + "')";
+		    var that = this;
+		    this.oModel.read(sPathOppType, null, null, true, function(oData) {
+    			if (oData && typeof oData !== "undefined" && oData.Description !== "") {
+    				that.byId('idzzOppType_e').setValue(oData.Description);
+    				that.activeCustOppTypeID = oData.Type;
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathOppType + " Error: " + oError);
+    		});
+        }
+	},
+	isCustNumeric: function( obj ) {
+	    if ( typeof obj === "undefined") {
+	        return false;
+	    }
+        return !jQuery.isArray( obj ) && (obj - parseFloat( obj ) + 1) >= 0;
+    },
 	extHookAddCustomHeaderFields: function(oCustomEntry) {
 		// additional value - ZzfcDiscount
 		var extensionZzfcDiscountValue = this.byId("idZzfcDiscount_e").getValue();
@@ -49,13 +83,23 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		oCustomEntry.ZzDepartment = extensionZzDepartmentValue;
 		// additional value - zzOppType
 		var extensionzzOppTypeValue = this.byId("idzzOppType_e").getValue();
-		oCustomEntry.zzOppType = extensionzzOppTypeValue;
+		if (typeof this.activeCustOppTypeID !== "undefined" && this.activeCustOppTypeID !== "") {
+		    oCustomEntry.zzOppType = this.activeCustOppTypeID;
+		} else if (this.isCustNumeric(extensionzzOppTypeValue)) {
+		    oCustomEntry.zzOppType = extensionzzOppTypeValue;
+		}
 		this.zoCustomEntry = oCustomEntry;
 		return true;
 	},
 	extHookHandleResponsesForCustomUpdates: function(r) {
 		// Place your hook implementation code here
 		if( typeof this.zoCustomEntry !== "undefined" && this.zoCustomEntry.ZzDepartment !== "" && this.zoCustomEntry.ZzDepartment !== this.HeaderObject.ZzDepartment ) {
+    		// delete the old
+    		if( this.HeaderObject.ZzDepartment !== "" ) {
+    		    var vServiceUrl = "/OpportunitySalesTeamSet(PartnerNumber='" + this.HeaderObject.ZzDepartment + "',PartnerFunctionCode='00000033',HeaderGuid=guid'" + this.HeaderObject.Guid + "')";
+    		    this.oModel.remove(vServiceUrl,null, null, null);
+    		}
+    		// create the new
     		var vDepartment = {
     			HeaderGuid: this.zoCustomEntry.Guid,
     			PartnerFunctionCode: "00000033",
@@ -63,26 +107,9 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
     			PartnerName: "Is Department",
     			PartnerFunctionText: "Is Department"
     		};
-    		
-    		// delete the old
-    		var vServiceUrl = "/OpportunitySalesTeamSet(PartnerNumber='" + this.HeaderObject.ZzDepartment + "',PartnerFunctionCode='00000033',HeaderGuid=guid'" + this.HeaderObject.Guid + "')";
-    		this.oModel.remove(vServiceUrl,null, null, null);
-    		// create the new
     		vServiceUrl = "/OpportunitySalesTeamSet";
     		this.oModel.create(vServiceUrl, vDepartment, null, null, null);
 		}
-		
-		/*
-    		var department = {
-    			HeaderGuid: oEntry.Guid,
-    			PartnerFunctionCode: "00000033",
-    			PartnerNumber: oEntry.ProspectNumber,
-    			PartnerName: oEntry.ProspectName,
-    			PartnerFunctionText: "Is Department"
-    		};
-    		oEntry.SalesTeam.push(department);
-    		*/
-		//}
 	},
 	extHookBindAdditionalFields: function(a) {
 		// get the details for this edit page
@@ -94,6 +121,10 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		this.byId("idzzModuleId_e").setValue(oDataDetails.zzModuleId);
 		this.byId("idZzDepartment_e").setValue(oDataDetails.ZzDepartment);
 		this.byId("idzzOppType_e").setValue(oDataDetails.zzOppType);
+		if (this.isCustNumeric(oDataDetails.zzOppType)) {
+		    this.activeCustOppTypeID = oDataDetails.zzOppType;
+		}
+        this.convertCustOppType(oDataDetails.zzOppType);
 	},
 
 	/* Department F4 Dialog methods */
@@ -272,6 +303,7 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		var params = e.getParameter("selectedItem");
 		var idOppType = params.data("ID");
 		this.byId("idzzOppType_e").setValue(idOppType);
+        this.convertCustOppType(idOppType);
 	},
 	searchOppType: function(e) {
 		var f = [];
