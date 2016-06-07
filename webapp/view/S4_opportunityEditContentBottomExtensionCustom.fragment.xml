@@ -5,10 +5,10 @@
 	<la:form.SimpleForm xmlns:la="sap.ui.layout" id="bottom_he_enhance_edit" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" class="editableForm" visible="{path : 'versioning&gt;/BackendSchemaVersion',formatter : 'cus.crm.opportunity.util.Formatter.formatEmployeeRespField'}">
 		<la:content>
 			<Label xmlns="sap.m" id="idZzfcDiscount_e_label" text="{i18n>ZZFCDISCOUNT}" ></Label>
-			<Input xmlns="sap.m" id="idZzfcDiscount_e"  value="{path:'ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
+			<Input xmlns="sap.m" id="idZzfcDiscount_e" liveChange="validatezPercentageField"  value="{path:'ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
 			
 			<Label xmlns="sap.m" id="idZzfcSellThr_e_label" text="{i18n>ZZFCSELLTHR}" ></Label>
-			<Input xmlns="sap.m" id="idZzfcSellThr_e"   value="{path:'ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
+			<Input xmlns="sap.m" id="idZzfcSellThr_e" liveChange="validatezPercentageField"   value="{path:'ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}" ></Input>
             
 			<Label xmlns="sap.m" id="idZzfcOppEnroll_e_label" text="{i18n>ZZFCOPPENROLL}"></Label>
 			<Input xmlns="sap.m" id="idZzfcOppEnroll_e" value="{path:'ZzfcOppEnroll' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>

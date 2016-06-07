@@ -5,10 +5,10 @@
 		<la:form.SimpleForm xmlns:la="sap.ui.layout" id="bottom_he_enhance_create" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1" class="editableForm" visible="{path : 'versioning&gt;/BackendSchemaVersion',formatter : 'cus.crm.opportunity.util.Formatter.formatEmployeeRespField'}">
 			<la:content>
 				<Label xmlns="sap.m" id="idZzfcDiscount_label" text="{i18n>ZZFCDISCOUNT}" ></Label>
-				<Input xmlns="sap.m" id="idZzfcDiscount" value="" ></Input>
+				<Input xmlns="sap.m" id="idZzfcDiscount" value="" liveChange="validatezPercentageField" ></Input>
 				
 				<Label xmlns="sap.m" id="idZzfcSellThr_label" text="{i18n>ZZFCSELLTHR}" ></Label>
-				<Input xmlns="sap.m" id="idZzfcSellThr" value="" ></Input>	
+				<Input xmlns="sap.m" id="idZzfcSellThr" value="" liveChange="validatezPercentageField" ></Input>	
 				
                 <Label xmlns="sap.m" id="idZzfcOppEnroll_label" text="{i18n>ZZFCOPPENROLL}"></Label>
                 <Input xmlns="sap.m" id="idZzfcOppEnroll" value=""/>

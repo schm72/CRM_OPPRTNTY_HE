@@ -16,6 +16,8 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S3Custom", {
 	},
     _onAfterRequestComp: function() {
         this.convertCustOppType();
+        this.convertModuleName();
+        this.convertDepartmentName();
 	},
 	convertCustOppType: function() {
 	    if(this.byId('idzzOppType_v').mProperties.text !== "" && this.isCustNumeric(this.byId('idzzOppType_v').mProperties.text)) {
@@ -27,6 +29,36 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S3Custom", {
     			}
     		}, function(oError) {
     			console.log("oData Request Error:" + sPathOppType + " Error: " + oError);
+    		});
+        }
+	},
+	convertModuleName: function() {
+	    if(this.byId('idzzModuleId_v').mProperties.text !== "" && this.isCustNumeric(this.byId('idzzModuleId_v').mProperties.text)) {
+		    var sPathModule = "/ZModuleCollection('" + this.byId('idzzModuleId_v').mProperties.text + "')";
+		    var that = this;
+		    this.oModel.read(sPathModule, null, ["$select=ZmoduleId,ZmoduleName"], true, function(oData) {
+    			if (oData && typeof oData !== "undefined" && oData.ZmoduleName !== "") {
+    				that.byId('idzzModuleId_v').setText(oData.ZmoduleName);
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathModule + " Error: " + oError);
+    		});
+        }
+	},
+	convertDepartmentName: function() {
+	    if(this.byId('idZzDepartment_v').mProperties.text !== "" && this.isCustNumeric(this.byId('idZzDepartment_v').mProperties.text)) {
+		    var sPathModule = "/ZDepartmentSet('" + this.byId('idZzDepartment_v').mProperties.text + "')";
+		    var that = this;
+		    this.oModel.read(sPathModule, null, null, true, function(oData) {
+    			if (oData && typeof oData !== "undefined") {
+    				var depName = cus.crm.opportunity.CRM_OPPRTNTY_HE.util.Formatter.getDepartmentDesc(oData.NameOrg1,oData.NameOrg2,oData.NameFirst,oData.NameLast,oData.NameLast2);
+    				console.log("depName" + depName);
+    				if ( depName !== "" ) {
+    					that.byId('idZzDepartment_v').setText(depName);
+    				}
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathModule + " Error: " + oError);
     		});
         }
 	},

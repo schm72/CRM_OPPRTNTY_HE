@@ -7,7 +7,7 @@
 			<Text  xmlns="sap.m" id="idZzfcDiscount_v" text="{path:'json>/ZzfcDiscount' , formatter: 'cus.crm.opportunity.util.Formatter.infotexttonumber'}"/>
 				
 			<Label xmlns="sap.m" id="idZzfcSellThr_v_label" text="{i18n>ZZFCSELLTHR}"></Label>
-			<Text  xmlns="sap.m" id="idZzfcSellThr_v" text="{path:'json>/ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>
+			<Text  xmlns="sap.m" id="idZzfcSellThr_v" text="{path:'json>/ZzfcSellThr' , formatter: 'cus.crm.opportunity.util.Formatter.infotexttonumber'}"/>
 				
 			<Label xmlns="sap.m" id="idZzfcOppEnroll_v_label" text="{i18n>ZZFCOPPENROLL}"></Label>
 			<Text  xmlns="sap.m" id="idZzfcOppEnroll_v" text="{path:'json>/ZzfcOppEnroll' , formatter: 'cus.crm.opportunity.util.Formatter.texttonumber'}"/>

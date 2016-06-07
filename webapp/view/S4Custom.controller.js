@@ -38,7 +38,18 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 	},
     _onAfterRequestComp: function() {
         this.convertCustOppType();
+        this.convertModuleName();
+        this.convertDepartmentName();
 	},
+	
+	/* Forecast Discount/sell through - validation*/
+	validatezPercentageField: function(oControlEvent) {
+		if (oControlEvent.getParameters().value > 100) {
+			sap.m.MessageBox.alert("Percentage field - therefore the maximum value is 100");
+			this.byId(oControlEvent.getSource().sId).setValue(100);
+		}
+	},
+	
 	convertCustOppType: function(vInputType) {
 	    var vOppTypeID;
 	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
@@ -56,6 +67,53 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
     			}
     		}, function(oError) {
     			console.log("oData Request Error:" + sPathOppType + " Error: " + oError);
+    		});
+        }
+	},
+	convertModuleName: function(vInputType) {
+	    var vModuleID;
+	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
+	        vModuleID = vInputType;
+	    } else {
+	        vModuleID = this.byId('idzzModuleId_e').mProperties.text;
+	    }
+	    if(vModuleID !== "" && this.isCustNumeric(vModuleID)) {
+		    var sPathModule = "/ZModuleCollection('" + vModuleID + "')";
+		    var that = this;
+		    this.oModel.read(sPathModule, null, ["$select=ZmoduleId,ZmoduleName"], true, function(oData) {
+    			if (oData && typeof oData !== "undefined" && oData.ZmoduleName !== "") {
+    				that.byId('idzzModuleId_e').setValue(oData.ZmoduleName);
+    				that.activeModuleID = oData.ZmoduleId;
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathModule + " Error: " + oError);
+    		});
+        }
+	},
+	convertDepartmentName: function(vInputType) {
+		console.log(this.byId('idZzDepartment_e'));
+	    var vDepartmentID;
+	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
+	        vDepartmentID = vInputType;
+	    } else {
+	        vDepartmentID = this.byId('idZzDepartment_e').mProperties.text;
+	    }
+	    if(vDepartmentID !== "" && this.isCustNumeric(vDepartmentID)) {
+		console.log("dep1");
+		    var sPathDepartment = "/ZDepartmentSet('" + vDepartmentID + "')";
+		    var that = this;
+		    this.oModel.read(sPathDepartment, null, null, true, function(oData) {
+		console.log("dep2");
+    			if (oData && typeof oData !== "undefined") {
+    				var depName = cus.crm.opportunity.CRM_OPPRTNTY_HE.util.Formatter.getDepartmentDesc(oData.NameOrg1,oData.NameOrg2,oData.NameFirst,oData.NameLast,oData.NameLast2);
+    				if ( depName !== "" ) {
+		console.log("dep3");
+    					that.byId('idZzDepartment_e').setValue(depName);
+    					that.activeDepartmentID = oData.DepartmentId;
+    				}
+    			}
+    		}, function(oError) {
+    			console.log("oData Request Error:" + sPathDepartment + " Error: " + oError);
     		});
         }
 	},
@@ -77,10 +135,18 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		oCustomEntry.ZzfcOppEnroll = extensionZzfcOppEnrollValue;
 		// additional value - zzModuleId
 		var extensionzzModuleIdValue = this.byId("idzzModuleId_e").getValue();
-		oCustomEntry.zzModuleId = extensionzzModuleIdValue;
+		if (typeof this.activeModuleID !== "undefined" && this.activeModuleID !== "") {
+		    oCustomEntry.zzModuleId = this.activeModuleID;
+		} else if (this.isCustNumeric(extensionzzModuleIdValue)) {
+			oCustomEntry.zzModuleId = extensionzzModuleIdValue;
+		}
 		// additional value - ZzDepartment
 		var extensionZzDepartmentValue = this.byId("idZzDepartment_e").getValue();
-		oCustomEntry.ZzDepartment = extensionZzDepartmentValue;
+		if (typeof this.activeDepartmentID !== "undefined" && this.activeDepartmentID !== "") {
+		    oCustomEntry.ZzDepartment = this.activeDepartmentID;
+		} else if (this.isCustNumeric(extensionZzDepartmentValue)) {
+			oCustomEntry.ZzDepartment = extensionZzDepartmentValue;
+		}
 		// additional value - zzOppType
 		var extensionzzOppTypeValue = this.byId("idzzOppType_e").getValue();
 		if (typeof this.activeCustOppTypeID !== "undefined" && this.activeCustOppTypeID !== "") {
@@ -124,7 +190,15 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		if (this.isCustNumeric(oDataDetails.zzOppType)) {
 		    this.activeCustOppTypeID = oDataDetails.zzOppType;
 		}
+		if (this.isCustNumeric(oDataDetails.zzModuleId)) {
+		    this.activeModuleID = oDataDetails.zzModuleId;
+		}
+		if (this.isCustNumeric(oDataDetails.ZzDepartment)) {
+		    this.activeDepartmentID = oDataDetails.ZzDepartment;
+		}
         this.convertCustOppType(oDataDetails.zzOppType);
+        this.convertModuleName(oDataDetails.zzModuleId);
+        this.convertDepartmentName(oDataDetails.ZzDepartment);
 	},
 
 	/* Department F4 Dialog methods */
@@ -178,6 +252,7 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		var params = e.getParameter("selectedItem");
 		var idDepartment = params.data("ID");
 		this.byId("idZzDepartment_e").setValue(idDepartment);
+        this.convertDepartmentName(idDepartment);
 	},
 	searchDepartment: function(e) {
 		if (typeof this.HeaderObject.ProspectNumber === "undefined" || this.HeaderObject.ProspectNumber === null || this.HeaderObject.ProspectNumber ===
@@ -228,7 +303,8 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		this._zzModuleIdSelectDialog.getModel().attachRequestCompleted(null, this._setzzModuleIdF4Text, this);
 		var f = [];
 		this._zzModuleIdSelectDialog.getAggregation("_dialog").getContent()[1].bindAggregation("items", {
-			path: "/ZModuleCollection",
+			//path: "/ZModuleCollection",
+			path: "/AccountCollection('" + this.HeaderObject.ProspectNumber + "')/ZModules",
 			parameters: {
 				select: "ZmoduleId,ZmoduleName"
 			},
@@ -245,6 +321,7 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 		var params = e.getParameter("selectedItem");
 		var idzzModuleId = params.data("ID");
 		this.byId("idzzModuleId_e").setValue(idzzModuleId);
+        this.convertModuleName(idzzModuleId);
 	},
 	searchzzModuleId: function(e) {
 		var f = [];
