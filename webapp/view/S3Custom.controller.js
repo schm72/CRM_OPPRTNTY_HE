@@ -52,7 +52,6 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S3Custom", {
 		    this.oModel.read(sPathModule, null, null, true, function(oData) {
     			if (oData && typeof oData !== "undefined") {
     				var depName = cus.crm.opportunity.CRM_OPPRTNTY_HE.util.Formatter.getDepartmentDesc(oData.NameOrg1,oData.NameOrg2,oData.NameFirst,oData.NameLast,oData.NameLast2);
-    				console.log("depName" + depName);
     				if ( depName !== "" ) {
     					that.byId('idZzDepartment_v').setText(depName);
     				}

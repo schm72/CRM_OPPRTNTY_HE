@@ -91,7 +91,6 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
         }
 	},
 	convertDepartmentName: function(vInputType) {
-		console.log(this.byId('idZzDepartment_e'));
 	    var vDepartmentID;
 	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
 	        vDepartmentID = vInputType;
@@ -99,15 +98,12 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S4Custom", {
 	        vDepartmentID = this.byId('idZzDepartment_e').mProperties.text;
 	    }
 	    if(vDepartmentID !== "" && this.isCustNumeric(vDepartmentID)) {
-		console.log("dep1");
 		    var sPathDepartment = "/ZDepartmentSet('" + vDepartmentID + "')";
 		    var that = this;
 		    this.oModel.read(sPathDepartment, null, null, true, function(oData) {
-		console.log("dep2");
     			if (oData && typeof oData !== "undefined") {
     				var depName = cus.crm.opportunity.CRM_OPPRTNTY_HE.util.Formatter.getDepartmentDesc(oData.NameOrg1,oData.NameOrg2,oData.NameFirst,oData.NameLast,oData.NameLast2);
     				if ( depName !== "" ) {
-		console.log("dep3");
     					that.byId('idZzDepartment_e').setValue(depName);
     					that.activeDepartmentID = oData.DepartmentId;
     				}

@@ -82,7 +82,6 @@ sap.ui.controller("cus.crm.opportunity.CRM_OPPRTNTY_HE.view.S5Custom", {
         }
 	},
 	convertDepartmentName: function(vInputType) {
-		console.log(this.byId('idZzDepartment'));
 	    var vDepartmentID;
 	    if(typeof vInputType !== "undefined" && vInputType !== "" && this.isCustNumeric(vInputType)) {
 	        vDepartmentID = vInputType;
